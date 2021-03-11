@@ -1,7 +1,7 @@
-# h2 PCPC- Nbody
-# h2 Oliva Laura 0522500817 
+# PCPC- Nbody
+#  Oliva Laura 0522500817 
 
-# h3 **Soluzione proposta**
+# **Soluzione proposta**
 
 # h5 La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
@@ -16,7 +16,7 @@ Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per link
 	mpirun -np <num processi> <nomeeseguibile> < num particelle> <num iterazioni> <nome file> |
 
 
-# h3 ** Struttura del progetto**
+#  ** Struttura del progetto**
 
 # h5 Dopo l'inzializzazione delle variabile viene creata la struttura di tipo MPI per facilitare lo scambio di messaggi tra i processi 
  \'\'\'\'\' c
