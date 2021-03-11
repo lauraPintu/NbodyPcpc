@@ -1,7 +1,7 @@
 # PCPC- Nbody
 #  Oliva Laura 0522500817 
 
-## **Soluzione proposta**
+ **Soluzione proposta**
 
 #####  La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
@@ -16,7 +16,7 @@ Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per link
 	mpirun -np <num processi> <nomeeseguibile> < num particelle> <num iterazioni> <nome file> |
 
 
-##  ** Struttura del progetto**
+ **Struttura del progetto**
 
 ##### Dopo l'inzializzazione delle variabile viene creata la struttura di tipo MPI per facilitare lo scambio di messaggi tra i processi 
  \'\'\'\'\' c
@@ -95,18 +95,18 @@ Successivamente vengono passati alla seguente funzione
 
 ```
 
-## **Analisi delle perfomance**
+**Analisi delle perfomance**
 
 ##### Per il mio progetto, avevo a disposizione le macchine di AWS m4.xlarge; ognuna di queste macchine ha 4 vCPU e 16 GB di RAM.
 è stato creato un cluster con 8 istanze di queste macchine.
 Tutti i test sono stati quindi effettuati utilizzando il seguente comando
 
-#####   mpirun -hostfile hostfile  -np X  progetto Y
+ ``` c mpirun -hostfile hostfile  -np X  progetto Y ```
 
 ##### Dove X indica il numero di processori (1,2, 4, 8, 16, 32) e Y indica il numerdo di corpi su cui effettuare la simulazione (50000, 2000X, 3000X).
 
 
-#### *Strong scaling*
+*Strong scaling*
 
 ##### La scalabilità forte è il tempo impiegato per risolvere un problema di grandezza fissata dato un numero variabile di processi.
 In questo testing sono state utilizzate 50.000 particelle.
@@ -124,7 +124,7 @@ Numero proc| tempo
 ##### Grafico con 50000 particelle   
 ![](./images/strong1.png)
 
-#### *Weak scaling* 
+ *Weak scaling* 
 
 ##### La scalabilità debole è  l' aumentare la grandezza del problema in modo proporzionale al numero di processi.
 Sono state effettuati due testing nel primo sono state utilizzate 2000 particelle per processo mentre nel secondo 3000 per processo.
