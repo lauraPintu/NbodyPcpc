@@ -1,12 +1,11 @@
-# NbodyPcpc
 # PCPC- Nbody
 #  Oliva Laura 0522500817 
 
-# **Soluzione proposta**
+## **Soluzione proposta**
 
-# h5 La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
+#####  La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
-# h5 Inizialmente con un algoritmo viene effettuato il calcolo per suddividere il lavoro in maniera equa tra tutti i processi,incluso il master.
+##### Inizialmente con un algoritmo viene effettuato il calcolo per suddividere il lavoro in maniera equa tra tutti i processi,incluso il master.
 Una volta completata la suddivisione si esegue la funzione bodyforce e successivamente ogni processo deve inviare la propria porzione a tutti
 gli altri processi, in modo che siano in grado di effettuare il prossimo step della simulazione.
 Viene quindi stampato il tempo di esecuzione totale e la media del tempo tra le varie iterazioni.
@@ -17,9 +16,9 @@ Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per link
 	mpirun -np <num processi> <nomeeseguibile> < num particelle> <num iterazioni> <nome file> |
 
 
-#  ** Struttura del progetto**
+##  ** Struttura del progetto**
 
-# h5 Dopo l'inzializzazione delle variabile viene creata la struttura di tipo MPI per facilitare lo scambio di messaggi tra i processi 
+##### Dopo l'inzializzazione delle variabile viene creata la struttura di tipo MPI per facilitare lo scambio di messaggi tra i processi 
  \'\'\'\'\' c
 	count = 6;
   	int array_of_blocklengths[6] = {1, 1, 1, 1, 1, 1};
@@ -42,7 +41,7 @@ Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per link
   
 	MPI_Type_commit(&body_type);
 
-# h5 Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni, e settare un flag,
+##### Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni, e settare un flag,
 passare anche il nome di un file da linea di comando, da cui estrarre le particelle. Se non viene passato nessun parametro da linea di comando, il
 numero di particelle è fissato a 10000 e il numero di iterazioni a 5.
 Vengono utilizzati i seguenti array per la divisione delle particelle in modo equo:
@@ -51,7 +50,7 @@ Vengono utilizzati i seguenti array per la divisione delle particelle in modo eq
 	sendcnts = (int*)malloc(sizeof(int)*world_size);
 	displs = (int*)malloc(sizeof(int)*world_size);
 ```
-# h5 Il primo rappresenta il numero di elementi per processo il secondo è il puntatore alla posizione iniziale della partizione.
+##### Il primo rappresenta il numero di elementi per processo il secondo è il puntatore alla posizione iniziale della partizione.
 Successivamente vengono passati alla seguente funzione 
 
 ``` c
@@ -70,7 +69,7 @@ Successivamente vengono passati alla seguente funzione
  		}
 	}
 ```
-# h5 Viene quindi effettuata la computazione parallela, in cui vengono passati alla funzione i valori di inizio e fine della propria sezione. 
+##### Viene quindi effettuata la computazione parallela, in cui vengono passati alla funzione i valori di inizio e fine della propria sezione. 
 	
 ``` c
 	void body_force(Body *body, float dt, int n_bodies, int start, int end){
@@ -96,20 +95,20 @@ Successivamente vengono passati alla seguente funzione
 
 ```
 
-# h3 **Analisi delle perfomance**
+## **Analisi delle perfomance**
 
-# h5 Per il mio progetto, avevo a disposizione le macchine di AWS m4.xlarge; ognuna di queste macchine ha 4 vCPU e 16 GB di RAM.
+##### Per il mio progetto, avevo a disposizione le macchine di AWS m4.xlarge; ognuna di queste macchine ha 4 vCPU e 16 GB di RAM.
 è stato creato un cluster con 8 istanze di queste macchine.
 Tutti i test sono stati quindi effettuati utilizzando il seguente comando
 
-# h5 mpirun -hostfile hostfile  -np X  progetto Y
+#####   mpirun -hostfile hostfile  -np X  progetto Y
 
-# h5 Dove X indica il numero di processori (1,2, 4, 8, 16, 32) e Y indica il numerdo di corpi su cui effettuare la simulazione (50000, 2000X, 3000X).
+##### Dove X indica il numero di processori (1,2, 4, 8, 16, 32) e Y indica il numerdo di corpi su cui effettuare la simulazione (50000, 2000X, 3000X).
 
 
-# h4 *Strong scaling*
+#### *Strong scaling*
 
-# h5 La scalabilità forte è il tempo impiegato per risolvere un problema di grandezza fissata dato un numero variabile di processi.
+##### La scalabilità forte è il tempo impiegato per risolvere un problema di grandezza fissata dato un numero variabile di processi.
 In questo testing sono state utilizzate 50.000 particelle.
 Di seguito vengono riportati sotto forma tabellare e successivamente grafica i tempi di esecuzione dei test:
 
@@ -122,11 +121,12 @@ Numero proc| tempo
 16|5.6917
 32|2.8991
 
+##### Grafico con 50000 particelle   
 ![](./images/strong1.png)
 
-# h4 *Weak scaling* 
+#### *Weak scaling* 
 
-# h5 La scalabilità debole è  l' aumentare la grandezza del problema in modo proporzionale al numero di processi.
+##### La scalabilità debole è  l' aumentare la grandezza del problema in modo proporzionale al numero di processi.
 Sono state effettuati due testing nel primo sono state utilizzate 2000 particelle per processo mentre nel secondo 3000 per processo.
 Di seguito vengono riportati sotto forma tabellare e successivamente grafica i tempi di esecuzione dei test:
 
@@ -139,6 +139,8 @@ N Part| Numero proc| tempo
 32000|16|2.4403
 64000|32|4.8944
 
+
+##### grafico con 2000 particelle per proc 
 ![](./images/weak2.png)
 
 N Part| Numero proc| tempo
@@ -150,6 +152,7 @@ N Part| Numero proc| tempo
 48000|16|5.2452
 96000|32|10.8252
 
+##### grafico con 3000 particelle per proc
 ![](./images/weak3.png)
 
 
