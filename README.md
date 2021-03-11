@@ -19,7 +19,7 @@ Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per link
  **Struttura del progetto**
 
 ##### Dopo l'inzializzazione delle variabile viene creata la struttura di tipo MPI per facilitare lo scambio di messaggi tra i processi 
- \'\'\'\'\' c
+``` c
 	count = 6;
   	int array_of_blocklengths[6] = {1, 1, 1, 1, 1, 1};
 
@@ -40,7 +40,7 @@ Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per link
 	MPI_Type_create_struct(count, array_of_blocklengths, array_of_displacements, array_of_types, &body_type);
   
 	MPI_Type_commit(&body_type);
-
+```
 ##### Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni, e settare un flag,
 passare anche il nome di un file da linea di comando, da cui estrarre le particelle. Se non viene passato nessun parametro da linea di comando, il
 numero di particelle è fissato a 10000 e il numero di iterazioni a 5.
