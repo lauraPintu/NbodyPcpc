@@ -6,15 +6,13 @@
 #####  La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
 ##### Inizialmente con un algoritmo viene effettuato il calcolo per suddividere il lavoro in maniera equa tra tutti i processi,incluso il master.
-Una volta completata la suddivisione si esegue la funzione bodyforce e successivamente ogni processo deve inviare la propria porzione a tutti
-gli altri processi, in modo che siano in grado di effettuare il prossimo step della simulazione.
-Viene quindi stampato il tempo di esecuzione totale e la media del tempo tra le varie iterazioni.
-Infine le risorse utilizzate vengono liberate.
+##### Una volta completata la suddivisione si esegue la funzione bodyforce e successivamente ogni processo deve inviare la propria porzione a tutti gli altri processi, in modo che siano in grado di effettuare il prossimo step della simulazione. Viene quindi stampato il tempo di esecuzione totale e la media del tempo tra le varie iterazioni. Infine le risorse utilizzate vengono liberate.
 
-Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per linkare la libreria math.h:
+##### Per eseguire il file si utilizzano i seguenti comandi con l'opzione -lm per linkare la libreria math.h:
+``` c
 	mpicc <nomefile.c> -o <nomeeseguibile> -lm |
 	mpirun -np <num processi> <nomeeseguibile> < num particelle> <num iterazioni> <nome file> |
-
+``` 
 
  **Struttura del progetto**
 
