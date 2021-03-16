@@ -1,7 +1,7 @@
 # PCPC- Nbody
 #  Oliva Laura 0522500817 
 
- **Soluzione proposta**
+<h2> **Soluzione proposta** </h2>
 
 #####  La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
@@ -39,17 +39,13 @@
   
 	MPI_Type_commit(&body_type);
 ```
-##### Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni, e settare un flag,
-passare anche il nome di un file da linea di comando, da cui estrarre le particelle. Se non viene passato nessun parametro da linea di comando, il
-numero di particelle è fissato a 10000 e il numero di iterazioni a 5.
-Vengono utilizzati i seguenti array per la divisione delle particelle in modo equo:
+##### Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni, e settare un flag,passare anche il nome di un file da linea di comando, da cui estrarre le particelle. Se non viene passato nessun parametro da linea di comando, il numero di particelle è fissato a 10000 e il numero di iterazioni a 5. Vengono utilizzati i seguenti array per la divisione delle particelle in modo equo:
 
 ``` c
 	sendcnts = (int*)malloc(sizeof(int)*world_size);
 	displs = (int*)malloc(sizeof(int)*world_size);
 ```
-##### Il primo rappresenta il numero di elementi per processo il secondo è il puntatore alla posizione iniziale della partizione.
-Successivamente vengono passati alla seguente funzione 
+##### Il primo rappresenta il numero di elementi per processo il secondo è il puntatore alla posizione iniziale della partizione. Successivamente vengono passati alla seguente funzione 
 
 ``` c
 	void create_sendcnts_displs(int *sendcnts,int *displs,int n_bodies,int world_size){
@@ -95,21 +91,17 @@ Successivamente vengono passati alla seguente funzione
 
 **Analisi delle perfomance**
 
-##### Per il mio progetto, avevo a disposizione le macchine di AWS m4.xlarge; ognuna di queste macchine ha 4 vCPU e 16 GB di RAM.
-è stato creato un cluster con 8 istanze di queste macchine.
-Tutti i test sono stati quindi effettuati utilizzando il seguente comando
+##### Per il mio progetto, avevo a disposizione le macchine di AWS m4.xlarge; ognuna di queste macchine ha 4 vCPU e 16 GB di RAM; è stato creato un cluster con 8 istanze di queste macchine.Tutti i test sono stati quindi effettuati utilizzando il seguente comando
 
  ```  mpirun -hostfile hostfile  -np X  progetto Y ```
 
 ##### Dove X indica il numero di processori (1,2, 4, 8, 16, 32) e Y indica il numerdo di corpi su cui effettuare la simulazione (50000, 2000X, 3000X).
-#####Esempio
+##### Esempio
 ![](./images/img1.png)
 
 *Strong scaling*
 
-##### La scalabilità forte è il tempo impiegato per risolvere un problema di grandezza fissata dato un numero variabile di processi.
-In questo testing sono state utilizzate 50.000 particelle.
-Di seguito vengono riportati sotto forma tabellare e successivamente grafica i tempi di esecuzione dei test:
+##### La scalabilità forte è il tempo impiegato per risolvere un problema di grandezza fissata dato un numero variabile di processi. In questo testing sono state utilizzate 50.000 particelle. Di seguito vengono riportati sotto forma tabellare e successivamente grafica i tempi di esecuzione dei test:
 
 Numero proc| tempo
 :---------:|:-----:
@@ -125,9 +117,7 @@ Numero proc| tempo
 
  *Weak scaling* 
 
-##### La scalabilità debole è  l' aumentare la grandezza del problema in modo proporzionale al numero di processi.
-Sono state effettuati due testing nel primo sono state utilizzate 2000 particelle per processo mentre nel secondo 3000 per processo.
-Di seguito vengono riportati sotto forma tabellare e successivamente grafica i tempi di esecuzione dei test:
+##### La scalabilità debole è  l' aumentare la grandezza del problema in modo proporzionale al numero di processi. Sono state effettuati due testing nel primo sono state utilizzate 2000 particelle per processo mentre nel secondo 3000 per processo. Di seguito vengono riportati sotto forma tabellare e successivamente grafica i tempi di esecuzione dei test:
 
 N Part| Numero proc| tempo
 :-----:|:---------:|:-----:
