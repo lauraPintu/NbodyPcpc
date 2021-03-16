@@ -104,7 +104,8 @@ Tutti i test sono stati quindi effettuati utilizzando il seguente comando
  ```  mpirun -hostfile hostfile  -np X  progetto Y ```
 
 ##### Dove X indica il numero di processori (1,2, 4, 8, 16, 32) e Y indica il numerdo di corpi su cui effettuare la simulazione (50000, 2000X, 3000X).
-
+#####Esempio
+![](./images/img1.png)
 
 *Strong scaling*
 
