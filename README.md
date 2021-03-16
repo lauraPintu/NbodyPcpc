@@ -1,7 +1,7 @@
 # PCPC- Nbody
 #  Oliva Laura 0522500817 
 
- ### Soluzione proposta
+ ## Soluzione proposta
 
 #####  La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
@@ -14,7 +14,7 @@
 	mpirun -np <num processi> <nomeeseguibile> < num particelle> <num iterazioni> <nome file> |
 ``` 
 
- **Struttura del progetto**
+## Struttura del progetto
 
 ##### Dopo l'inzializzazione delle variabile viene creata la struttura di tipo MPI per facilitare lo scambio di messaggi tra i processi 
 ``` c
@@ -89,7 +89,7 @@
 
 ```
 
-**Analisi delle perfomance**
+## Analisi delle perfomance
 
 ##### Per il mio progetto, avevo a disposizione le macchine di AWS m4.xlarge; ognuna di queste macchine ha 4 vCPU e 16 GB di RAM; è stato creato un cluster con 8 istanze di queste macchine.Tutti i test sono stati quindi effettuati utilizzando il seguente comando
 
