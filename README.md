@@ -1,7 +1,7 @@
 # PCPC- Nbody
 #  Oliva Laura 0522500817 
 
- *Soluzione proposta* 
+ ### Soluzione proposta
 
 #####  La soluzione proposta segue lo schema definito nell'algoritmo sequenziale di [Nbody](https://github.com/harrism/mini-nbody/blob/master/nbody.c/ "Nbody"). 
 
