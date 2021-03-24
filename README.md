@@ -39,7 +39,7 @@
   
 	MPI_Type_commit(&body_type);
 ```
-##### Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni, e settare un flag,passare anche il nome di un file da linea di comando, da cui estrarre le particelle. Se non viene passato nessun parametro da linea di comando, il numero di particelle è fissato a 10000 e il numero di iterazioni a 5. Vengono utilizzati i seguenti array per la divisione delle particelle in modo equo:
+##### Poi vengono controllati i parametri di input; l'utente può scegliere il numero di particelle e il numero di iterazioni,passare anche il nome di un file da linea di comando, da cui estrarre le particelle. Se non viene passato nessun parametro da linea di comando, il numero di particelle è fissato a 10000 e il numero di iterazioni a 5. Vengono utilizzati i seguenti array per la divisione delle particelle in modo equo:
 
 ``` c
 	sendcnts = (int*)malloc(sizeof(int)*world_size);
